@@ -1,0 +1,18 @@
+name: Semgrep SAST Scan
+
+on: [push]
+
+jobs:
+  semgrep-scan:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository Code
+        uses: actions/checkout@v4
+
+      - name: Run Semgrep SAST Scan
+        uses: returntocorp/semgrep-action@v2
+        with:
+          config: p/owasp-top-ten
+          sarif-to-stdout: true
+          output-format: sarif
